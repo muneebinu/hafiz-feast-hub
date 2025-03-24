@@ -1,91 +1,49 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 40 50% 99%;
+    --foreground: 20 14.3% 4.1%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 20 14.3% 4.1%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 20 14.3% 4.1%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 0 72.2% 50.6%;
+    --primary-foreground: 60 9.1% 97.8%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 36 100% 67.1%;
+    --secondary-foreground: 24 9.8% 10%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 60 4.8% 95.9%;
+    --muted-foreground: 25 5.3% 44.7%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 20 43.8% 56.1%;
+    --accent-foreground: 60 9.1% 97.8%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 60 9.1% 97.8%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 20 5.9% 90%;
+    --input: 20 5.9% 90%;
+    --ring: 20 14.3% 4.1%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
@@ -96,6 +54,187 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-restaurant-light text-restaurant-dark font-sans;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-semibold;
+  }
+
+  ::selection {
+    @apply bg-restaurant-red/30 text-restaurant-dark;
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply py-20 px-4 sm:px-6 md:px-8 max-w-[1400px] mx-auto;
+  }
+
+  .glass {
+    @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-glass;
+  }
+
+  .food-card {
+    @apply relative overflow-hidden rounded-xl transition-all duration-300 bg-white hover:shadow-hover;
+  }
+
+  .food-image-container {
+    @apply w-full h-48 overflow-hidden relative;
+  }
+
+  .food-image {
+    @apply w-full h-full object-cover object-center transition-transform duration-700 ease-in-out hover:scale-110;
+  }
+
+  .food-info {
+    @apply p-4 flex flex-col gap-1;
+  }
+
+  .food-title {
+    @apply text-lg font-semibold text-restaurant-dark;
+  }
+
+  .food-price {
+    @apply text-restaurant-red font-semibold;
+  }
+
+  .section-title {
+    @apply text-2xl md:text-4xl font-display font-bold text-restaurant-dark relative inline-block;
+  }
+
+  .section-title:after {
+    content: '';
+    @apply absolute -bottom-2 left-0 w-2/3 h-1 bg-restaurant-red rounded-full;
+  }
+
+  .nav-link {
+    @apply relative text-restaurant-dark hover:text-restaurant-red transition-colors duration-300 px-3 py-2;
+  }
+
+  .nav-link.active {
+    @apply text-restaurant-red;
+  }
+
+  .nav-link.active:after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-[2px] bg-restaurant-red transform origin-bottom-right;
+  }
+
+  .call-button {
+    @apply fixed bottom-6 right-6 z-50 bg-restaurant-red text-white rounded-full shadow-lg p-3 hover:bg-restaurant-red/90 transition-all duration-300 hover:scale-105;
+  }
+
+  .section-subtitle {
+    @apply text-restaurant-brown/80 text-lg md:text-xl mb-12 max-w-2xl mx-auto text-center;
+  }
+
+  .btn-primary {
+    @apply bg-restaurant-red text-white px-6 py-3 rounded-full font-medium shadow-md hover:shadow-lg transition-all duration-300 hover:bg-restaurant-red/90 active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply bg-restaurant-yellow text-restaurant-dark px-6 py-3 rounded-full font-medium shadow-md hover:shadow-lg transition-all duration-300 hover:bg-restaurant-yellow/90 active:scale-95;
+  }
+
+  .btn-outline {
+    @apply border-2 border-restaurant-red text-restaurant-red px-6 py-3 rounded-full font-medium hover:bg-restaurant-red hover:text-white transition-all duration-300 active:scale-95;
+  }
+
+  .location-card {
+    @apply bg-white rounded-xl p-6 shadow-soft transition-all duration-300 hover:shadow-hover;
+  }
+
+  .category-tab {
+    @apply px-4 py-2 text-restaurant-dark hover:text-restaurant-red rounded-full transition-all duration-300 whitespace-nowrap;
+  }
+
+  .category-tab.active {
+    @apply bg-restaurant-red text-white;
+  }
+
+  .deal-card {
+    @apply relative overflow-hidden rounded-xl transition-all duration-300 bg-white shadow-soft hover:shadow-hover border-2 border-transparent hover:border-restaurant-red/20;
+  }
+
+  .tag {
+    @apply absolute top-4 right-4 bg-restaurant-red text-white text-xs px-3 py-1 rounded-full font-semibold;
+  }
+}
+
+/* Custom Animations */
+.reveal {
+  position: relative;
+  transform: translateY(30px);
+  opacity: 0;
+  transition: all 0.8s ease;
+}
+
+.reveal.active {
+  transform: translateY(0px);
+  opacity: 1;
+}
+
+/* Image animation */
+@keyframes image-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.image-float {
+  animation: image-float 5s ease infinite;
+}
+
+/* Shimmer effect */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer:before {
+  content: '';
+  position: absolute;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  height: 100%;
+  width: 150px;
+  z-index: 1;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -150px;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Smooth page transitions */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 400ms, transform 400ms;
+}
+
+.page-transition-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 300ms, transform 300ms;
 }

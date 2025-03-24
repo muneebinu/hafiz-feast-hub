@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import MenuCard, { MenuItemProps } from '@/components/MenuCard';
 import DealCard, { DealProps } from '@/components/DealCard';
 import { motion } from 'framer-motion';
+import { Phone } from 'lucide-react';
 
 // Define the categories
 const categories = [
@@ -259,40 +260,52 @@ const Menu = () => {
         
         <div className="container mx-auto px-4 md:px-8 relative z-10">
           <div className="text-center">
-            <div className="flex flex-col items-center justify-center">
+            <motion.div 
+              className="flex flex-col items-center justify-center"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+            >
               <h1 className="text-4xl md:text-6xl font-display font-bold text-white mb-2">
                 Hafiz Pizza Hut
               </h1>
               <p className="text-white text-lg mb-4">Family Restaurant</p>
-            </div>
+            </motion.div>
             
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 max-w-xl mx-auto mt-6">
-              <p className="text-white font-semibold">Free Home Delivery</p>
-              <p className="text-white/90 text-sm">Within 4 km on orders above Rs. 1000</p>
-              <div className="flex items-center justify-center gap-4 mt-2">
+            <motion.div 
+              className="bg-white/10 backdrop-blur-sm rounded-xl p-6 max-w-xl mx-auto mt-6 border border-white/20"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+            >
+              <p className="text-white font-semibold text-xl mb-2">Free Home Delivery</p>
+              <p className="text-white/90 mb-4">Within 4 km on orders above Rs. 1000</p>
+              <div className="flex items-center justify-center gap-6 mt-2">
                 <a 
                   href="tel:+923488826061" 
-                  className="text-white hover:underline text-sm"
+                  className="text-white hover:text-restaurant-cream transition-colors flex items-center gap-2"
                 >
+                  <Phone size={18} />
                   0348-8826061
                 </a>
                 <a 
                   href="tel:+923429426566" 
-                  className="text-white hover:underline text-sm"
+                  className="text-white hover:text-restaurant-cream transition-colors flex items-center gap-2"
                 >
+                  <Phone size={18} />
                   0342-9426566
                 </a>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
       
       {/* Category Tabs */}
-      <section className="sticky top-16 bg-white z-30 py-2 shadow-sm">
+      <section className="sticky top-16 bg-white z-30 py-3 shadow-md">
         <div className="container mx-auto px-4 md:px-8">
           <div className="overflow-x-auto">
-            <div className="flex space-x-2 min-w-max">
+            <div className="flex space-x-3 min-w-max">
               {categories.map((category) => (
                 <button
                   key={category}
@@ -308,21 +321,24 @@ const Menu = () => {
       </section>
       
       {/* Menu Items */}
-      <section className="section-padding pb-10">
+      <section className="section-padding pb-16">
         {isLoading ? (
-          <div className="grid grid-cols-1 gap-3">
-            {Array.from({ length: 8 }).map((_, index) => (
-              <div key={index} className="food-card animate-pulse flex items-center justify-between p-3">
-                <div className="h-6 bg-gray-200 rounded w-2/3"></div>
-                <div className="h-6 bg-gray-200 rounded w-1/6"></div>
+          <div className="grid grid-cols-1 gap-3 max-w-3xl mx-auto">
+            {Array.from({ length: 6 }).map((_, index) => (
+              <div key={index} className="food-card animate-pulse flex items-center justify-between p-4">
+                <div className="flex items-center gap-3">
+                  <div className="h-12 w-12 bg-gray-200 rounded-full hidden sm:block"></div>
+                  <div className="h-6 bg-gray-200 rounded w-40"></div>
+                </div>
+                <div className="h-6 bg-gray-200 rounded w-16"></div>
               </div>
             ))}
           </div>
         ) : (
           <>
             {activeCategory !== 'deals' && filteredItems.length > 0 && (
-              <div className="bg-restaurant-cream rounded-lg overflow-hidden border border-restaurant-brown/20">
-                <div className="bg-restaurant-red text-white p-2 font-bold text-left pl-4">
+              <div className="bg-restaurant-cream rounded-xl overflow-hidden border border-restaurant-brown/20 shadow-md max-w-3xl mx-auto">
+                <div className="bg-restaurant-red text-white p-3 font-bold text-left pl-6 text-lg">
                   {categoryHeaders[activeCategory] || 'Menu Items'}
                 </div>
                 
@@ -335,7 +351,7 @@ const Menu = () => {
             )}
             
             {activeCategory === 'deals' && (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
                 {deals.map((deal) => (
                   <DealCard key={deal.id} deal={deal} />
                 ))}
@@ -352,32 +368,53 @@ const Menu = () => {
       </section>
       
       {/* Free Birthday Hall */}
-      <section className="py-10 bg-restaurant-cream/60 border-t border-restaurant-brown/10">
-        <div className="container mx-auto px-4 md:px-8">
-          <div className="bg-restaurant-dark rounded-2xl shadow-soft p-8 text-center max-w-3xl mx-auto">
-            <h2 className="text-3xl font-display font-bold mb-4 text-white">Birthday Party</h2>
-            <p className="text-white/80 mb-4 text-xl font-bold">
+      <section className="py-16 bg-restaurant-dark relative overflow-hidden">
+        <div className="absolute inset-0 z-0 opacity-10">
+          <img 
+            src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&q=80&w=2070"
+            alt="Birthday Party Background" 
+            className="w-full h-full object-cover object-center"
+          />
+        </div>
+        
+        <div className="container mx-auto px-4 md:px-8 relative z-10">
+          <motion.div 
+            className="text-center max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-4xl font-display font-bold mb-4 text-white">Birthday Party</h2>
+            <p className="text-white text-2xl font-bold mb-6 bg-restaurant-red inline-block px-6 py-2 rounded-full">
               HALL FREE
             </p>
-            <p className="text-white/90 text-lg mb-4">
-              Celebrate your special day with us!
+            <p className="text-white/90 text-xl mb-8">
+              Celebrate your special day with us! We offer a free hall for birthday parties.
             </p>
             <a 
               href="tel:+923488826061" 
-              className="btn-primary inline-flex items-center gap-2"
+              className="btn-primary inline-flex items-center gap-2 px-8 py-4 text-lg"
             >
+              <Phone className="animate-pulse" />
               Book Now
             </a>
-          </div>
+          </motion.div>
         </div>
       </section>
       
       {/* Order Call-to-Action */}
-      <section className="py-12 bg-restaurant-cream border-t border-restaurant-brown/10">
+      <section className="py-16 bg-restaurant-cream border-t border-restaurant-brown/10">
         <div className="container mx-auto px-4 md:px-8">
-          <div className="bg-white rounded-2xl shadow-soft p-8 md:p-12 text-center max-w-3xl mx-auto">
-            <h2 className="text-3xl font-display font-bold mb-4">Ready to Order?</h2>
-            <p className="text-gray-600 mb-8">
+          <motion.div 
+            className="bg-white rounded-2xl shadow-lg p-8 md:p-12 text-center max-w-3xl mx-auto border-2 border-restaurant-red/10"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-3xl font-display font-bold mb-4 text-restaurant-red">Ready to Order?</h2>
+            <p className="text-restaurant-brown text-lg mb-8">
               Call us now to place your order! We offer free delivery within 4 km for orders above Rs. 1000/-.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
@@ -385,22 +422,18 @@ const Menu = () => {
                 href="tel:+923488826061" 
                 className="btn-primary inline-flex items-center gap-2"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                </svg>
+                <Phone size={20} />
                 Branch 1: 0348-8826061
               </a>
               <a 
                 href="tel:+923448426566" 
                 className="btn-primary inline-flex items-center gap-2"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                </svg>
+                <Phone size={20} />
                 Branch 2: 0344-8426566
               </a>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
     </div>

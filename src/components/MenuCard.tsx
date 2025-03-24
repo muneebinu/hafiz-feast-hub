@@ -13,27 +13,16 @@ export interface MenuItemProps {
 const MenuCard = ({ item }: { item: MenuItemProps }) => {
   return (
     <motion.div 
-      className="food-card"
+      className="food-card flex items-center justify-between bg-restaurant-cream border-b border-restaurant-brown/20 py-2 px-3"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
     >
-      <div className="food-image-container">
-        <img 
-          src={item.image} 
-          alt={item.name} 
-          className="food-image"
-          loading="lazy"
-        />
-      </div>
       <div className="food-info">
-        <h3 className="food-title">{item.name}</h3>
-        <p className="food-price">Rs. {item.price}/-</p>
-        {item.description && (
-          <p className="text-gray-500 text-sm mt-1">{item.description}</p>
-        )}
+        <h3 className="food-title text-restaurant-brown font-semibold">{item.name}</h3>
       </div>
+      <p className="food-price text-restaurant-brown font-bold">{item.price}/-</p>
     </motion.div>
   );
 };

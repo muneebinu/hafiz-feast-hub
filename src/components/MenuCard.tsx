@@ -13,14 +13,14 @@ export interface MenuItemProps {
 const MenuCard = ({ item }: { item: MenuItemProps }) => {
   return (
     <motion.div 
-      className="food-card flex items-center justify-between bg-restaurant-cream border-b border-restaurant-brown/20 py-3 px-4"
+      className="food-card flex items-center justify-between bg-white border-b border-gray-100 py-4 px-5 hover:bg-gray-50 transition-all duration-300"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
     >
-      <div className="food-info flex items-center gap-3">
-        <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-restaurant-red/20 hidden sm:block">
+      <div className="food-info flex items-center gap-4">
+        <div className="w-14 h-14 rounded-full overflow-hidden border border-gray-200 shadow-sm hidden sm:block">
           <img 
             src={item.image} 
             alt={item.name}
@@ -28,13 +28,13 @@ const MenuCard = ({ item }: { item: MenuItemProps }) => {
           />
         </div>
         <div>
-          <h3 className="food-title text-restaurant-brown font-semibold">{item.name}</h3>
+          <h3 className="food-title text-restaurant-dark font-display font-semibold text-lg">{item.name}</h3>
           {item.description && (
-            <p className="text-restaurant-brown/70 text-sm">{item.description}</p>
+            <p className="text-restaurant-brown/70 text-sm mt-1">{item.description}</p>
           )}
         </div>
       </div>
-      <p className="food-price text-restaurant-red font-bold text-lg">Rs. {item.price}/-</p>
+      <p className="food-price text-restaurant-red font-display font-bold text-xl">Rs. {item.price}/-</p>
     </motion.div>
   );
 };

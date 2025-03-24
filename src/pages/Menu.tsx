@@ -1,9 +1,8 @@
-
 import { useState, useEffect } from 'react';
 import MenuCard, { MenuItemProps } from '@/components/MenuCard';
 import DealCard, { DealProps } from '@/components/DealCard';
 import { motion } from 'framer-motion';
-import { Phone } from 'lucide-react';
+import { Phone, ArrowRight } from 'lucide-react';
 
 // Define the categories
 const categories = [
@@ -161,60 +160,63 @@ const Menu = () => {
     },
   ];
 
-  // Deals data
+  // Deals data with improved images
   const deals: DealProps[] = [
     {
       id: 'deal-1',
-      name: 'Deal 1',
+      name: 'Family Deal',
       price: 800,
       items: ['2 Zinger Burger', '1 French Fries', '2 Cold drink Reg'],
       image: 'https://images.unsplash.com/photo-1603064752734-4c48eff53d05?auto=format&fit=crop&q=80&w=1364',
+      popular: true,
     },
     {
       id: 'deal-2',
-      name: 'Deal 1 Half',
+      name: 'Classic Deal',
       price: 420,
       items: ['1 Zinger Burger', '1 French Fries Reg Half', '1 Cane'],
       image: 'https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?auto=format&fit=crop&q=80&w=1771',
     },
     {
       id: 'deal-3',
-      name: 'Deal 2',
+      name: 'Premium Deal',
       price: 900,
       items: ['2 Chicken Burger', '2 Chicken Piece', '1 French Fries Reg', '2 Cold Drink Reg'],
       image: 'https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&q=80&w=1365',
+      popular: true,
     },
     {
       id: 'deal-4',
-      name: 'Deal 3',
+      name: 'Spicy Deal',
       price: 1050,
       items: ['2 Zinger Burger', '2 Chicken Piece', '1 French Fries Reg', '2 Cold Drink Reg'],
       image: 'https://images.unsplash.com/photo-1571091655789-405127d14fc3?auto=format&fit=crop&q=80&w=1408',
     },
     {
       id: 'deal-5',
-      name: 'Deal 5',
+      name: 'Special Deal',
       price: 1250,
       items: ['1 Tower Burger', '1 French Fries Reg', '2 Cold Drink Reg', '10 Hot Wings'],
       image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&q=80&w=2899',
     },
     {
       id: 'deal-6',
-      name: 'Deal 7',
+      name: 'Party Deal',
       price: 1400,
       items: ['8 Chicken Piece', '1 French Fries', '4 Cold Drink Reg'],
       image: 'https://images.unsplash.com/photo-1627309302198-41e2cfb4429e?auto=format&fit=crop&q=80&w=1374',
+      popular: true,
     },
     {
       id: 'deal-7',
-      name: 'Deal 8',
+      name: 'Group Deal',
       price: 2800,
       items: ['8 Chicken Burger', '1 French Fries', '4 Cold Drink Reg'],
       image: 'https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?auto=format&fit=crop&q=80&w=1771',
     },
     {
       id: 'deal-8',
-      name: 'Deal 9',
+      name: 'Super Deal',
       price: 3200,
       items: ['6 Zinger Burger', '6 Chicken Piece', '10 Hot Wings', '1 French Fries', '4 Cold Drink Reg'],
       image: 'https://images.unsplash.com/photo-1550317138-10000687a72b?auto=format&fit=crop&q=80&w=1740',
@@ -240,17 +242,17 @@ const Menu = () => {
 
   // Define category headers mapping
   const categoryHeaders: Record<string, string> = {
-    'burgers': '~Burger',
-    'chicken': '~Fried Chicken',
-    'shawarmas': '~Shawarmas',
-    'deals': 'Deals'
+    'burgers': 'Gourmet Burgers',
+    'chicken': 'Premium Fried Chicken',
+    'shawarmas': 'Special Shawarmas',
+    'deals': 'Value Deals'
   };
 
   return (
-    <div className="min-h-screen bg-restaurant-cream">
+    <div className="min-h-screen bg-gray-50">
       {/* Menu Header */}
-      <section className="relative py-16 overflow-hidden bg-restaurant-red">
-        <div className="absolute inset-0 z-0 opacity-20">
+      <section className="relative py-20 overflow-hidden bg-gradient-to-r from-restaurant-dark to-restaurant-brown">
+        <div className="absolute inset-0 z-0 opacity-10">
           <img 
             src="/lovable-uploads/7ff8890d-e310-4f9f-b66b-edfdefe90b74.png"
             alt="Menu Background" 
@@ -266,20 +268,21 @@ const Menu = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
             >
-              <h1 className="text-4xl md:text-6xl font-display font-bold text-white mb-2">
+              <h1 className="text-4xl md:text-6xl font-display font-bold text-white mb-3">
                 Hafiz Pizza Hut
               </h1>
-              <p className="text-white text-lg mb-4">Family Restaurant</p>
+              <div className="w-24 h-1 bg-restaurant-red mx-auto mb-4"></div>
+              <p className="text-white/90 text-lg italic mb-4">Fine Dining Experience</p>
             </motion.div>
             
             <motion.div 
-              className="bg-white/10 backdrop-blur-sm rounded-xl p-6 max-w-xl mx-auto mt-6 border border-white/20"
+              className="bg-white/10 backdrop-blur-sm rounded-xl p-6 max-w-xl mx-auto mt-8 border border-white/20"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.7, delay: 0.2 }}
             >
-              <p className="text-white font-semibold text-xl mb-2">Free Home Delivery</p>
-              <p className="text-white/90 mb-4">Within 4 km on orders above Rs. 1000</p>
+              <p className="text-white font-display font-semibold text-xl mb-2">Complimentary Delivery</p>
+              <p className="text-white/90 mb-5 text-sm">Within 4 km on orders above Rs. 1000</p>
               <div className="flex items-center justify-center gap-6 mt-2">
                 <a 
                   href="tel:+923488826061" 
@@ -302,15 +305,19 @@ const Menu = () => {
       </section>
       
       {/* Category Tabs */}
-      <section className="sticky top-16 bg-white z-30 py-3 shadow-md">
+      <section className="sticky top-16 bg-white z-30 py-4 shadow-sm border-b border-gray-100">
         <div className="container mx-auto px-4 md:px-8">
           <div className="overflow-x-auto">
-            <div className="flex space-x-3 min-w-max">
+            <div className="flex space-x-4 min-w-max">
               {categories.map((category) => (
                 <button
                   key={category}
                   onClick={() => setActiveCategory(category)}
-                  className={`category-tab ${activeCategory === category ? 'active' : ''}`}
+                  className={`category-tab font-medium text-sm px-5 py-2.5 rounded-full transition-all ${
+                    activeCategory === category 
+                      ? 'bg-restaurant-dark text-white shadow-md' 
+                      : 'text-restaurant-dark hover:bg-gray-100'
+                  }`}
                 >
                   {category.charAt(0).toUpperCase() + category.slice(1)}
                 </button>
@@ -321,11 +328,11 @@ const Menu = () => {
       </section>
       
       {/* Menu Items */}
-      <section className="section-padding pb-16">
+      <section className="py-16 px-4 md:px-8 max-w-7xl mx-auto">
         {isLoading ? (
           <div className="grid grid-cols-1 gap-3 max-w-3xl mx-auto">
             {Array.from({ length: 6 }).map((_, index) => (
-              <div key={index} className="food-card animate-pulse flex items-center justify-between p-4">
+              <div key={index} className="food-card animate-pulse flex items-center justify-between p-4 bg-white rounded-lg">
                 <div className="flex items-center gap-3">
                   <div className="h-12 w-12 bg-gray-200 rounded-full hidden sm:block"></div>
                   <div className="h-6 bg-gray-200 rounded w-40"></div>
@@ -337,24 +344,41 @@ const Menu = () => {
         ) : (
           <>
             {activeCategory !== 'deals' && filteredItems.length > 0 && (
-              <div className="bg-restaurant-cream rounded-xl overflow-hidden border border-restaurant-brown/20 shadow-md max-w-3xl mx-auto">
-                <div className="bg-restaurant-red text-white p-3 font-bold text-left pl-6 text-lg">
-                  {categoryHeaders[activeCategory] || 'Menu Items'}
+              <div className="mb-16">
+                <div className="text-center mb-10">
+                  <h2 className="text-3xl font-display font-bold text-restaurant-dark mb-2">
+                    {categoryHeaders[activeCategory] || 'Our Menu'}
+                  </h2>
+                  <div className="w-16 h-0.5 bg-restaurant-red mx-auto"></div>
                 </div>
                 
-                <div className="divide-y divide-restaurant-brown/10">
-                  {filteredItems.map((item) => (
-                    <MenuCard key={item.id} item={item} />
-                  ))}
+                <div className="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-lg max-w-3xl mx-auto">
+                  <div className="divide-y divide-gray-100">
+                    {filteredItems.map((item) => (
+                      <MenuCard key={item.id} item={item} />
+                    ))}
+                  </div>
                 </div>
               </div>
             )}
             
             {activeCategory === 'deals' && (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-                {deals.map((deal) => (
-                  <DealCard key={deal.id} deal={deal} />
-                ))}
+              <div className="mb-16">
+                <div className="text-center mb-10">
+                  <h2 className="text-3xl font-display font-bold text-restaurant-dark mb-2">
+                    Special Value Deals
+                  </h2>
+                  <div className="w-16 h-0.5 bg-restaurant-red mx-auto mb-4"></div>
+                  <p className="text-restaurant-brown/80 max-w-2xl mx-auto">
+                    Experience our chef's specially curated deals for exceptional value
+                  </p>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+                  {deals.map((deal) => (
+                    <DealCard key={deal.id} deal={deal} />
+                  ))}
+                </div>
               </div>
             )}
             
@@ -367,9 +391,9 @@ const Menu = () => {
         )}
       </section>
       
-      {/* Free Birthday Hall */}
-      <section className="py-16 bg-restaurant-dark relative overflow-hidden">
-        <div className="absolute inset-0 z-0 opacity-10">
+      {/* Free Birthday Hall - Elegant Design */}
+      <section className="py-20 bg-gradient-to-br from-restaurant-dark to-black relative overflow-hidden">
+        <div className="absolute inset-0 z-0 opacity-15">
           <img 
             src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&q=80&w=2070"
             alt="Birthday Party Background" 
@@ -385,51 +409,54 @@ const Menu = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-4xl font-display font-bold mb-4 text-white">Birthday Party</h2>
-            <p className="text-white text-2xl font-bold mb-6 bg-restaurant-red inline-block px-6 py-2 rounded-full">
-              HALL FREE
+            <h2 className="text-4xl font-display font-bold mb-4 text-white">Celebrate Your Special Day</h2>
+            <div className="w-16 h-0.5 bg-restaurant-red mx-auto mb-6"></div>
+            <p className="text-white font-display text-2xl font-bold mb-6 inline-block px-8 py-2 border-2 border-restaurant-red rounded-full">
+              COMPLIMENTARY HALL
             </p>
-            <p className="text-white/90 text-xl mb-8">
-              Celebrate your special day with us! We offer a free hall for birthday parties.
+            <p className="text-white/80 text-lg mb-10">
+              Host your memorable celebration in our elegant private venue. Complimentary hall for birthday parties.
             </p>
             <a 
               href="tel:+923488826061" 
-              className="btn-primary inline-flex items-center gap-2 px-8 py-4 text-lg"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-restaurant-red text-white rounded-full font-medium hover:bg-restaurant-red/90 transition-all shadow-lg hover:shadow-xl"
             >
-              <Phone className="animate-pulse" />
-              Book Now
+              <Phone />
+              Reserve Now
+              <ArrowRight size={18} className="ml-1" />
             </a>
           </motion.div>
         </div>
       </section>
       
-      {/* Order Call-to-Action */}
-      <section className="py-16 bg-restaurant-cream border-t border-restaurant-brown/10">
+      {/* Order Call-to-Action - Elegant Design */}
+      <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4 md:px-8">
           <motion.div 
-            className="bg-white rounded-2xl shadow-lg p-8 md:p-12 text-center max-w-3xl mx-auto border-2 border-restaurant-red/10"
+            className="bg-white rounded-2xl shadow-xl p-10 text-center max-w-3xl mx-auto border border-gray-100"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-3xl font-display font-bold mb-4 text-restaurant-red">Ready to Order?</h2>
-            <p className="text-restaurant-brown text-lg mb-8">
-              Call us now to place your order! We offer free delivery within 4 km for orders above Rs. 1000/-.
+            <h2 className="text-3xl font-display font-bold mb-4 text-restaurant-dark">Ready to Order?</h2>
+            <div className="w-12 h-0.5 bg-restaurant-red mx-auto mb-6"></div>
+            <p className="text-restaurant-brown/80 text-lg mb-10">
+              Call us now for a premium dining experience delivered to your doorstep. Complimentary delivery within 4 km for orders above Rs. 1000/-.
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-6">
               <a 
                 href="tel:+923488826061" 
-                className="btn-primary inline-flex items-center gap-2"
+                className="bg-restaurant-dark text-white px-6 py-3 rounded-full font-medium hover:bg-restaurant-dark/90 transition-all flex items-center gap-2 shadow-md"
               >
-                <Phone size={20} />
+                <Phone size={18} />
                 Branch 1: 0348-8826061
               </a>
               <a 
                 href="tel:+923448426566" 
-                className="btn-primary inline-flex items-center gap-2"
+                className="bg-restaurant-dark text-white px-6 py-3 rounded-full font-medium hover:bg-restaurant-dark/90 transition-all flex items-center gap-2 shadow-md"
               >
-                <Phone size={20} />
+                <Phone size={18} />
                 Branch 2: 0344-8426566
               </a>
             </div>
@@ -441,3 +468,4 @@ const Menu = () => {
 };
 
 export default Menu;
+
